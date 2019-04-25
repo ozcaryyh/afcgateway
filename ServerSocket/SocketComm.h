@@ -74,7 +74,7 @@ public:
     bool IsServer() const;  // Is running in server mode
     bool IsBroadcast() const; // Is UDP Broadcast active
     bool IsSmartAddressing() const; // Is Smart Addressing mode support
-	bool IsPolling() const;	// Is polling active?
+	bool IsPollingEnabled() const;	// Is polling enabled?
     SOCKET GetSocket() const;   // return socket handle
     void SetServerState(bool bServer);  // Run as server mode if true
     void SetSmartAddressing(bool bSmartAddressing); // Set Smart addressing mode
@@ -123,7 +123,7 @@ protected:
     bool        m_bServer;      // Server mode (true)
     bool        m_bSmartAddressing; // Smart Addressing mode (true) - many listeners
     bool        m_bBroadcast;   // Broadcast mode
-	bool		m_bPolling;		// Polling mode
+	bool		m_bPollingEnabled;		// Polling mode
     CSockAddrList m_AddrList;   // Connection address list for broadcast
     HANDLE      m_hMutex;       // Mutex object
 // SocketComm - function

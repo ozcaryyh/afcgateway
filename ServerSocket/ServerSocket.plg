@@ -6,15 +6,13 @@
 --------------------Configuration: ServerSocket - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP47FA.tmp" with contents
+Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP15E0.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ServerSocket.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"C:\Development\SMS2\middleware\AFCGateway\ServerSocket\GatewayDlg.cpp"
-"C:\Development\SMS2\middleware\AFCGateway\ServerSocket\RemoteModbus.cpp"
-"C:\Development\SMS2\middleware\AFCGateway\ServerSocket\ServerSocket.cpp"
+"C:\Development\SMS2\middleware\AFCGateway\ServerSocket\SocketComm.cpp"
 ]
-Creating command line "cl.exe @C:\Users\ozcar\AppData\Local\Temp\RSP47FA.tmp" 
-Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP47FB.tmp" with contents
+Creating command line "cl.exe @C:\Users\ozcar\AppData\Local\Temp\RSP15E0.tmp" 
+Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP15F1.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ServerSocket.pdb" /debug /machine:I386 /out:"Debug/ServerSocket.exe" /pdbtype:sept 
 .\Debug\blocksock.obj
@@ -31,14 +29,10 @@ Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP47FB.tmp" with con
 .\Debug\StdAfx.obj
 .\Debug\ServerSocket.res
 ]
-Creating command line "link.exe @C:\Users\ozcar\AppData\Local\Temp\RSP47FB.tmp"
+Creating command line "link.exe @C:\Users\ozcar\AppData\Local\Temp\RSP15F1.tmp"
 <h3>Output Window</h3>
 Compiling...
-RemoteModbus.cpp
-Generating Code...
-Skipping... (no relevant changes detected)
-GatewayDlg.cpp
-ServerSocket.cpp
+SocketComm.cpp
 Linking...
 
 

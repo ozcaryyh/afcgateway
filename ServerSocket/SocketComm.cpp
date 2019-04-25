@@ -142,9 +142,9 @@ bool CSocketComm::IsSmartAddressing() const
 
 ///////////////////////////////////////////////////////////////////////////////
 // IsPolling
-bool CSocketComm::IsPolling() const
+bool CSocketComm::IsPollingEnabled() const
 {
-    return m_bPolling;
+    return m_bPollingEnabled;
 }
 
 
@@ -219,10 +219,10 @@ void CSocketComm::SetSmartAddressing(bool bSmartAddressing)
 
 ///////////////////////////////////////////////////////////////////////////////
 // SetPolling
-void CSocketComm::SetPolling(bool bPolling)
+void CSocketComm::SetPolling(bool bEnable)
 {
     if (!IsStart())
-        m_bPolling = bPolling;
+        m_bPollingEnabled = bEnable;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

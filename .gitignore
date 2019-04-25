@@ -1,0 +1,27 @@
+# .gitignore
+
+# Ignore compile logs
+ServerSocket/Release/ServerSocket.tlog
+ServerSocket/Debug/ServerSocket.tlog
+ServerSocket/Release/*.log
+ServerSocket/Debug/*.log
+
+# Ignore all compiled files
+ServerSocket/Release/*.obj
+ServerSocket/Debug/*.obj
+ServerSocket/Release/*.exe
+ServerSocket/Debug/*.exe
+ServerSocket/Release/*.idb
+ServerSocket/Debug/*.idb
+ServerSocket/Release/*.sbr
+ServerSocket/Debug/*.sbr
+ServerSocket/Release/*.pdb
+ServerSocket/Debug/*.pdb
+ServerSocket/Release/*.pch
+ServerSocket/Debug/*.pch
+ServerSocket/Release/*.res
+ServerSocket/Debug/*.res
+ServerSocket/Release/*.bsc
+ServerSocket/Debug/*.bsc
+ServerSocket/Release/*.ilk
+ServerSocket/Debug/*.ilk

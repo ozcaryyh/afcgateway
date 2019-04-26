@@ -134,11 +134,6 @@ BOOL CRemoteModbus::IsActive() {
 	return (INADDR_NONE!=m_saServer.IPAddr());
 }
 
-BOOL CRemoteModbus::IsPollingEnabled()
-{
-	return m_bPollingEnabled;
-}
-
 WORD CRemoteModbus::TxRxMessage(CByteArray& abyQuery, //modbus query without CRC
 				  WORD wLengthQuery, //QueryLength without CRC
 				  CByteArray& abyResponse, //modbus Response without CRC

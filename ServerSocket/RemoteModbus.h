@@ -39,7 +39,6 @@ public:
 
 
 	BOOL IsActive(); //return true if serial port opened 
-	BOOL IsPollingEnabled();
 	
 
 	BOOL CloseConnection();
@@ -81,10 +80,6 @@ public:
 		ERR_RD_SOCK_ERROR=1003,
 		ERR_SOCK_NOT_CONNECTED=1004
 	};
-
-protected:
-	HANDLE      m_hThread;
-
 	
 private:
 	BOOL m_bReconnectOnEveryMessage;
@@ -93,8 +88,6 @@ private:
 	DWORD m_dwTimeOut;
 	BOOL m_bComExceptionEnabled;
 	BYTE m_byExceptionOffset;
-	BOOL m_bPollingEnabled;
-	
 
 	CSockAddr m_saServer;//Modbus Server 
 	CSockAddr m_saClient;//Address of this object 

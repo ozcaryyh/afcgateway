@@ -23,6 +23,7 @@ class CGatewayDlg : public CDialog
 public:
 	CGatewayDlg(CWnd* pParent = NULL);   // standard constructor
 	int		m_nSockType;
+	BOOL	m_bPollingEnabled;
 
 // Dialog Data
 	//{{AFX_DATA(CGatewayDlg)
@@ -56,6 +57,7 @@ public:
 // Implementation
 protected:
 	HICON m_hIcon;
+	HANDLE      m_hThread;      // Thread Comm handle
 
 	CSocketManager m_SocketManager[MAX_CONNECTION];
 	CSocketManager* m_pCurServer;
@@ -67,6 +69,7 @@ protected:
 	bool StartServer();
 //	void GetAdapters();
 	void DoWork();
+	BOOL IsPollingEnabled();
 
 	// Generated message map functions
 	//{{AFX_MSG(CGatewayDlg)

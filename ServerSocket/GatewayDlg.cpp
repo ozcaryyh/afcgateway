@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include <process.h>  
 #include "ServerSocket.h"
 #include "GatewayDlg.h"
 
@@ -93,7 +94,7 @@ BOOL CGatewayDlg::PreTranslateMessage(MSG* pMsg)
 		{
 			if (m_ClientSocketManager.IsOpen())
 			{
-				//OnBtnSend();
+				OnAfcSend();
 			}
 			return TRUE;
 		}
@@ -364,29 +365,7 @@ void CGatewayDlg::OnAfcStart()
 
 }
 
-void CGatewayDlg::DoWork() 
-{
-
-}
-
-
-
-void CGatewayDlg::OnEnablePoll() 
-{
-	
-	if (0 != m_ctlEnablePoll.GetCheck()) 
-	{
-		m_ctlEnablePoll.SetCheck(1);
-
-	}
-	else 
-	{
-
-	}
-	
-}
-
-void CGatewayDlg::OnAfcSend() 
+void CGatewayDlg::Run() 
 {
 	BYTE byDevice=0;
 	WORD wValue=0;
@@ -443,5 +422,63 @@ void CGatewayDlg::OnAfcSend()
 		}
 
 	}
+}
+
+
+
+void CGatewayDlg::OnEnablePoll() 
+{
+	
+	if (0 != m_ctlEnablePoll.GetCheck()) 
+	{
+		m_ctlEnablePoll.SetCheck(1);
+
+		HANDLE hThread;
+		UINT uiThreadId = 0;
+        hThread = (HANDLE)_beginthreadex(NULL,  // Security attributes
+                                  0,    // stack
+                    PollingThreadProc,   // Thread proc
+                                this,   // Thread param
+                    CREATE_SUSPENDED,   // creation mode
+                        &uiThreadId); 
+
+		if ( NULL != hThread)
+        {
+            //SetThreadPriority(hThread, THREAD_PRIORITY_ABOVE_NORMAL);
+            ResumeThread( hThread );
+            m_hThread = hThread;
+         
+        }
+	}
+	else 
+	{
+
+	}
 	
 }
+
+void CGatewayDlg::OnAfcSend() 
+{
+	
+	
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// PollingThreadProc
+///////////////////////////////////////////////////////////////////////////////
+// DESCRIPTION:
+//     Polling Thread function.  This function is the main thread for polling
+//     - Asynchronous mode.
+// PARAMETERS:
+//     LPVOID pParam : Thread parameter - a CGatewayDlg pointer
+// NOTES:
+///////////////////////////////////////////////////////////////////////////////
+UINT WINAPI CGatewayDlg::PollingThreadProc(LPVOID pParam)
+{
+    CGatewayDlg* pThis = reinterpret_cast<CGatewayDlg*>( pParam );
+    _ASSERTE( pThis != NULL );
+
+    pThis->Run();
+
+    return 1L;
+} // end PollingThreadProc

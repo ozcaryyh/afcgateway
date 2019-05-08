@@ -68,7 +68,7 @@ protected:
 	void PickNextAvailable();
 	bool StartServer();
 //	void GetAdapters();
-	void DoWork();
+	virtual void Run();
 	BOOL IsPollingEnabled();
 
 	// Generated message map functions
@@ -83,6 +83,8 @@ protected:
 	afx_msg void OnAfcSend();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+	static UINT WINAPI PollingThreadProc(LPVOID pParam);
 };
 
 //{{AFX_INSERT_LOCATION}}

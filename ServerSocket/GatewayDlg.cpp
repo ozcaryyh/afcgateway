@@ -103,6 +103,11 @@ BOOL CGatewayDlg::PreTranslateMessage(MSG* pMsg)
 	return CDialog::PreTranslateMessage(pMsg);
 }
 
+BOOL CGatewayDlg::IsPollingEnabled()
+{
+	return m_bPollingEnabled;
+}
+
 BOOL CGatewayDlg::OnInitDialog() 
 {
 	ASSERT( GetDlgItem(IDC_AFC_START) != NULL );
@@ -379,48 +384,61 @@ void CGatewayDlg::Run()
 	WORD wQuant=1;
 	CString str;
 
-	if (NULL==pModbus) {
+	if (NULL == pModbus) 
+	{
 		return;
 	}
 
 	m_ctlAfcDevId.GetWindowText(strValue);
 	byDevice = (BYTE)atoi(strValue); // Slave address
 
-	wAddr = 0; // Heartbeat address = 0
+	while (IsPollingEnabled())
+	{
+		wAddr = 0; // Heartbeat address = 0
+		wValue = 10; // Heartbeat value = 10
 
-	wValue = 10; // Heartbeat value = 10
-	warValue.SetSize(1);
-	warValue[0] = wValue;
+		warValue.SetSize(1);
+		warValue[0] = wValue;
 
-	nError=pModbus->PresetMultipleRegisters(byDevice,wAddr,WORD(warValue.GetSize()),warValue);	
-		
-	if(nError!=CModbus::ERR_OK){
-		WaitCursor.Restore();
-		AfxMessageBox(pModbus->ErrorMessage(nError));
-	}
-
-	wAddr = 1; // Common Fault address = 0
-
-	aValues.SetSize(wQuant);
-	nError=pModbus->ReadInputRegisters(byDevice, wAddr, wQuant, aValues);
-
-	if(nError!=CModbus::ERR_OK){
-		WaitCursor.Restore();
-		AfxMessageBox(pModbus->ErrorMessage(nError));
-	}
-	else {
-		str.Format("%d",HIBYTE(aValues[0]));
-		m_ClientSocketManager.AppendMessage( str );
-
-		if(HIBYTE(aValues[0]) == 1){
-			m_ctlCommonFault.SetCheck(1);
-			m_ctlCommonFault.SetState(1);
-		}
-		else {
-			m_ctlCommonFault.SetCheck(0);
-			m_ctlCommonFault.SetState(0);
+		nError=pModbus->PresetMultipleRegisters(byDevice,wAddr,WORD(warValue.GetSize()),warValue);	
+			
+		if(nError!=CModbus::ERR_OK)
+		{
+			WaitCursor.Restore();
+			str.Format("Error(1001): %s\r\n", pModbus->ErrorMessage(nError));
+			m_ClientSocketManager.AppendMessage( str );
+//			AfxMessageBox(pModbus->ErrorMessage(nError));
 		}
 
+		wAddr = 1; // Common Fault address = 0
+
+		aValues.SetSize(wQuant);
+		nError=pModbus->ReadInputRegisters(byDevice, wAddr, wQuant, aValues);
+
+		if(nError!=CModbus::ERR_OK)
+		{
+			WaitCursor.Restore();
+			str.Format("Error(1001): %s\r\n", pModbus->ErrorMessage(nError));
+			m_ClientSocketManager.AppendMessage( str );
+//			AfxMessageBox(pModbus->ErrorMessage(nError));
+		}
+		else 
+		{
+			str.Format("%d",HIBYTE(aValues[0]));
+			m_ClientSocketManager.AppendMessage( str );
+
+			if(HIBYTE(aValues[0]) == 1)
+			{
+				m_ctlCommonFault.SetCheck(1);
+				m_ctlCommonFault.SetState(1);
+			}
+			else 
+			{
+				m_ctlCommonFault.SetCheck(0);
+				m_ctlCommonFault.SetState(0);
+			}
+
+		}
 	}
 }
 
@@ -432,6 +450,7 @@ void CGatewayDlg::OnEnablePoll()
 	if (0 != m_ctlEnablePoll.GetCheck()) 
 	{
 		m_ctlEnablePoll.SetCheck(1);
+		m_bPollingEnabled = true;
 
 		HANDLE hThread;
 		UINT uiThreadId = 0;
@@ -452,7 +471,8 @@ void CGatewayDlg::OnEnablePoll()
 	}
 	else 
 	{
-
+		m_ctlEnablePoll.SetCheck(0);
+		m_bPollingEnabled = false;
 	}
 	
 }

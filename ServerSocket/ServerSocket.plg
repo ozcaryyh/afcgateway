@@ -6,13 +6,13 @@
 --------------------Configuration: ServerSocket - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP4BA3.tmp" with contents
+Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSPC656.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ServerSocket.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
 "C:\Development\SMS2\middleware\AFCGateway\ServerSocket\GatewayDlg.cpp"
 ]
-Creating command line "cl.exe @C:\Users\ozcar\AppData\Local\Temp\RSP4BA3.tmp" 
-Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP4BA4.tmp" with contents
+Creating command line "cl.exe @C:\Users\ozcar\AppData\Local\Temp\RSPC656.tmp" 
+Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSPC657.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ServerSocket.pdb" /debug /machine:I386 /out:"Debug/ServerSocket.exe" /pdbtype:sept 
 .\Debug\blocksock.obj
@@ -29,7 +29,7 @@ Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP4BA4.tmp" with con
 .\Debug\StdAfx.obj
 .\Debug\ServerSocket.res
 ]
-Creating command line "link.exe @C:\Users\ozcar\AppData\Local\Temp\RSP4BA4.tmp"
+Creating command line "link.exe @C:\Users\ozcar\AppData\Local\Temp\RSPC657.tmp"
 <h3>Output Window</h3>
 Compiling...
 GatewayDlg.cpp

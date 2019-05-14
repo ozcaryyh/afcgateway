@@ -14,6 +14,7 @@ static char THIS_FILE[] = __FILE__;
 
 const int SOCK_TCP	= 0;
 const int SOCK_UDP  = 1;
+const DWORD DEFAULT_TIMEOUT = 100L;
 
 /////////////////////////////////////////////////////////////////////////////
 // CGatewayDlg dialog
@@ -424,8 +425,8 @@ void CGatewayDlg::Run()
 		}
 		else 
 		{
-			str.Format("%d",HIBYTE(aValues[0]));
-			m_ClientSocketManager.AppendMessage( str );
+			//str.Format("%d",HIBYTE(aValues[0]));
+			//m_ClientSocketManager.AppendMessage( str );
 
 			if(HIBYTE(aValues[0]) == 1)
 			{
@@ -471,8 +472,21 @@ void CGatewayDlg::OnEnablePoll()
 	}
 	else 
 	{
+		// Kill Thread
+		if (IsPollingEnabled())
+		{
+			m_bPollingEnabled = false;
+
+			SleepEx(DEFAULT_TIMEOUT, TRUE);
+			if (WaitForSingleObject(m_hThread, 1000L) == WAIT_TIMEOUT)
+			{
+				TerminateThread(m_hThread, 1L);
+			}
+			CloseHandle(m_hThread);
+			m_hThread = NULL;
+		}
+
 		m_ctlEnablePoll.SetCheck(0);
-		m_bPollingEnabled = false;
 	}
 	
 }

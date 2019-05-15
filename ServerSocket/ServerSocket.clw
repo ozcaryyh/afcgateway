@@ -15,9 +15,9 @@ Class3=CAboutDlg
 Class4=CServerSocketDlg
 
 ResourceCount=4
-Resource1=IDD_SERVERSOCKET_DIALOG
-Resource2=IDD_ABOUTBOX
-Resource3=IDD_CLIENTSOCKET_DIALOG
+Resource1=IDD_ABOUTBOX
+Resource2=IDD_CLIENTSOCKET_DIALOG
+Resource3=IDD_SERVERSOCKET_DIALOG
 Class5=CGatewayDlg
 Resource4=IDD_GATEWAY_DIALOG
 
@@ -102,7 +102,7 @@ Control15=IDC_STATIC,static,1342308352
 [DLG:IDD_GATEWAY_DIALOG]
 Type=1
 Class=CGatewayDlg
-ControlCount=35
+ControlCount=36
 Control1=IDC_STATIC,static,1342308352
 Control2=IDC_SVR_PORT,edit,1350631552
 Control3=IDC_SVR_PORTINC,msctls_updown32,1342177458
@@ -138,6 +138,7 @@ Control32=IDC_ENABLE_POLL,button,1342242819
 Control33=IDC_AFC_DEVID,edit,1350631552
 Control34=IDC_AFC_DEVID_INC,msctls_updown32,1342177458
 Control35=IDC_BTN_FAULT,button,1342242816
+Control36=IDC_CBO_STN_MODE,combobox,1344340226
 
 [CLS:CGatewayDlg]
 Type=0
@@ -145,6 +146,6 @@ HeaderFile=GatewayDlg.h
 ImplementationFile=GatewayDlg.cpp
 BaseClass=CDialog
 Filter=D
-LastObject=IDC_ENABLE_POLL
+LastObject=IDC_CBO_STN_MODE
 VirtualFilter=dWC
 

@@ -65,6 +65,7 @@ BEGIN_MESSAGE_MAP(CGatewayDlg, CDialog)
 	ON_BN_CLICKED(IDC_AFC_STOP, OnAfcStop)
 	ON_BN_CLICKED(IDC_ENABLE_POLL, OnEnablePoll)
 	ON_BN_CLICKED(IDC_AFC_SEND, OnAfcSend)
+	ON_CBN_EDITCHANGE(IDC_CBO_STN_MODE, OnEditchangeCboStnMode)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -275,6 +276,7 @@ void CGatewayDlg::OnAfcStop()
 	CRemoteModbus* pRemoteModbus = (CRemoteModbus*)m_pModbus;
 	// Disconnect socket
 	//m_ClientSocketManager.StopComm();
+	Stop();
 	
 	//if (!m_ClientSocketManager.IsOpen())
 	if (pRemoteModbus->CloseConnection())
@@ -443,6 +445,24 @@ void CGatewayDlg::Run()
 	}
 }
 
+void CGatewayDlg::Stop() 
+{
+	// Kill Thread
+	if (IsPollingEnabled())
+	{
+		m_bPollingEnabled = false;
+
+		SleepEx(DEFAULT_TIMEOUT, TRUE);
+		if (WaitForSingleObject(m_hThread, 1000L) == WAIT_TIMEOUT)
+		{
+			TerminateThread(m_hThread, 1L);
+		}
+		CloseHandle(m_hThread);
+		m_hThread = NULL;
+	}
+
+	m_ctlEnablePoll.SetCheck(0);
+}
 
 
 void CGatewayDlg::OnEnablePoll() 
@@ -472,21 +492,7 @@ void CGatewayDlg::OnEnablePoll()
 	}
 	else 
 	{
-		// Kill Thread
-		if (IsPollingEnabled())
-		{
-			m_bPollingEnabled = false;
-
-			SleepEx(DEFAULT_TIMEOUT, TRUE);
-			if (WaitForSingleObject(m_hThread, 1000L) == WAIT_TIMEOUT)
-			{
-				TerminateThread(m_hThread, 1L);
-			}
-			CloseHandle(m_hThread);
-			m_hThread = NULL;
-		}
-
-		m_ctlEnablePoll.SetCheck(0);
+		Stop();
 	}
 	
 }
@@ -516,3 +522,9 @@ UINT WINAPI CGatewayDlg::PollingThreadProc(LPVOID pParam)
 
     return 1L;
 } // end PollingThreadProc
+
+void CGatewayDlg::OnEditchangeCboStnMode() 
+{
+	// TODO: Add your control notification handler code here
+	
+}

@@ -104,6 +104,10 @@ SOURCE=.\crc16.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DataExchange.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\GatewayDlg.cpp
 # End Source File
 # Begin Source File
@@ -158,6 +162,10 @@ SOURCE=.\ClientSocketDlg.h
 # Begin Source File
 
 SOURCE=.\crc16.hpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DataExchange.h
 # End Source File
 # Begin Source File
 

@@ -69,6 +69,7 @@ protected:
 	bool StartServer();
 //	void GetAdapters();
 	virtual void Run();
+	virtual void Stop();
 	BOOL IsPollingEnabled();
 
 	// Generated message map functions
@@ -81,6 +82,7 @@ protected:
 	afx_msg void OnAfcStop();
 	afx_msg void OnEnablePoll();
 	afx_msg void OnAfcSend();
+	afx_msg void OnEditchangeCboStnMode();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

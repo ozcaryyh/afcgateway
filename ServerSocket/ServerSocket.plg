@@ -6,18 +6,20 @@
 --------------------Configuration: ServerSocket - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP310F.tmp" with contents
+Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP96A4.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ServerSocket.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
 "C:\Development\SMS2\middleware\AFCGateway\ServerSocket\DataExchange.cpp"
 ]
-Creating command line "cl.exe @C:\Users\ozcar\AppData\Local\Temp\RSP310F.tmp" 
-Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP3110.tmp" with contents
+Creating command line "cl.exe @C:\Users\ozcar\AppData\Local\Temp\RSP96A4.tmp" 
+Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP96A5.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ServerSocket.pdb" /debug /machine:I386 /out:"Debug/ServerSocket.exe" /pdbtype:sept 
 .\Debug\blocksock.obj
 .\Debug\ClientSocketDlg.obj
 .\Debug\crc16.obj
+.\Debug\DataExchange.obj
+.\Debug\GatewayDlg.obj
 .\Debug\modbus.obj
 .\Debug\PerformanceCounter.obj
 .\Debug\RemoteModbus.obj
@@ -27,10 +29,8 @@ Creating temporary file "C:\Users\ozcar\AppData\Local\Temp\RSP3110.tmp" with con
 .\Debug\SocketManager.obj
 .\Debug\StdAfx.obj
 .\Debug\ServerSocket.res
-.\Debug\GatewayDlg.obj
-.\Debug\DataExchange.obj
 ]
-Creating command line "link.exe @C:\Users\ozcar\AppData\Local\Temp\RSP3110.tmp"
+Creating command line "link.exe @C:\Users\ozcar\AppData\Local\Temp\RSP96A5.tmp"
 <h3>Output Window</h3>
 Compiling...
 DataExchange.cpp
